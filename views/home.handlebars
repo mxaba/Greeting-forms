@@ -7,35 +7,55 @@
 
     <div class="row">
         <div class="twelve columns">
-            <div class="error">
-                <p>errors</p>
+            {{!-- {{#if message.if}} --}}
+                <div class="errors">
+                    <p> <b>{{ message.info }}</b> </p>
+                </div>
+            {{!-- {{/if}} --}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="twelve columns">
+            <div class="row">
+                <form action="" method="post">
+                    <label for="">Name:
+                        <input type="text" name="nameEntered" placeholder="Enter your name">
+                        <button name="greetButton">Greet</button>
+                    </label>
+
+                    <div class="row">
+                        <div class="three columns">
+                            IsiZulu
+                            <input type="radio" name="language" value="isizulu">
+                        </div>
+
+                        <div class="three columns">
+                            Spanish
+                            <input type="radio" name="language" value="spanish">
+                        </div>
+
+                        <div class="three columns">
+                            English
+                            <input type="radio" name="language" value="english">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
     <div class="row">
         <div class="twelve columns">
-            <form action="" method="post">
-                <label for="">Name:</label>
-                <input type="text" name="nameEntered" placeholder="Enter your name">
-                <button name="greetButton">Greet</button>
-            </form>
-            <div class="row">
-                <div class="three columns">
-                    IsiZulu
-                    <input type="radio" name="language" value="isizulu">
-                </div>
-
-                <div class="three columns">
-                    Spanish
-                        <input type="radio" name="language" value="spanish">
-                </div>
-
-                <div class="three columns">
-                    English
-                        <input type="radio" name="language" value="english">
-                </div>
+            <div class="output">
+                <span>Message to be displayed</span>
             </div>
+        </div>
+    </div> <br>
+
+    <div class="row">
+        <div class="twelve columns">
+            <p> <a href="">View Greeted name(s)</a> </p>
         </div>
     </div>
 </div>
