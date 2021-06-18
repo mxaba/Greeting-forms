@@ -1,0 +1,31 @@
+{
+  "name": "greetings-webapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mxaba/Greeting-forms.git"
+  },
+  "author": "mxaba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mxaba/Greeting-forms/issues"
+  },
+  "homepage": "https://github.com/mxaba/Greeting-forms#readme",
+  "devDependencies": {
+    "eslint": "^7.28.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4"
+  },
+  "dependencies": {
+    "body-parse": "^0.1.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "nodemon": "^2.0.7"
+  }
+}
