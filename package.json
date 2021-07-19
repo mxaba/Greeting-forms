@@ -1,10 +1,11 @@
 {
   "name": "greetings-webapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "A greet application with routes and SQL",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js",
+    "test": "nodemon test.js"
   },
   "repository": {
     "type": "git",
@@ -29,5 +30,8 @@
     "express-handlebars": "^5.3.2",
     "express-session": "^1.17.2",
     "nodemon": "^2.0.7"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
