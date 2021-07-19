@@ -24,12 +24,14 @@ app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
-  res.render('home');
+  res.render('home', {
+    greetings: greetInsta.getCounter(),
+  });
 });
 
 app.post('/greetme', (req, res) => {
   let { nameEntered } = req.body;
-  const { language } = req.body;
+  let { language } = req.body;
 
   if (!language && nameEntered === '') {
     req.flash('flash', 'Please enter name and select language!');
@@ -49,6 +51,8 @@ app.post('/greetme', (req, res) => {
     greetPerson: greetInsta.greetPerson(),
     greetings: greetInsta.getCounter(),
   });
+  nameEntered = '';
+  language = null;
 });
 
 app.listen(PORT, () => {

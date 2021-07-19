@@ -1,7 +1,7 @@
 module.exports = () => {
   let languMessage = '';
   let person = '';
-  let nameList = {};
+  const nameList = {};
   let greetingsCounter = 0;
 
   function langRun(la, per) {
@@ -32,13 +32,13 @@ module.exports = () => {
 
   // Adding to the object
   function nameLists(name) {
-    nameList = name;
-    if (nameList[person] === undefined) {
+    // nameList = name;
+    if (nameList[name] === undefined) {
       greetingsCounter += 1;
-      nameList[person] = 1;
+      nameList[name] = 1;
       return nameList;
     }
-    nameList[person] += 1;
+    nameList[name] += 1;
     return nameList;
   }
 
