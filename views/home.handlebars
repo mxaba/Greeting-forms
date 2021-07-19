@@ -1,7 +1,7 @@
 <div class="container box">
     <div class="row">
         <div class="twelve columns">
-            <h1 class="">Greetings <span class="">{{ greetings }}</span> </h1>
+            <h1 class="">Greetings</h1>
         </div>
     </div>
 
@@ -19,11 +19,11 @@
         <div class="twelve columns">
             <div class="row">
                 <form action="greetme" method="post">
-                    <label for="">Name:
+                    {{!-- <label for="">Name: --}}
                         <input type="text" name="nameEntered" placeholder="Enter your name">
-                        <button name="greetButton">Greet</button>
-                    </label>
-
+                        <button name="greetButton">Greet</button> <span class="countGretings">{{ greetings }}</span>
+                    {{!-- </label> --}}
+                    
                     <div class="row">
                         <div class="four columns">
                             IsiZulu

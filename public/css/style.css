@@ -12,7 +12,17 @@ body {
     height: auto;
 }
 
-/* .con {
-    align-items: center;
-    text-align: center;
-} */
+.output span {
+    font-size: 35px;
+    color: purple;
+    text-shadow: 1px 2px 4px rgb(72, 45, 78);
+}
+
+.countGretings {
+    font-size: 30px;
+    font-weight: bold;
+    border: 1px solid rgb(72, 45, 78);
+    border-radius: 50%;
+    margin-left: 40px;
+    padding: 12px;
+}
