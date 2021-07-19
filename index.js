@@ -2,11 +2,18 @@ const express = require('express');
 const expresshbs = require('express-handlebars');
 const bodyParse = require('body-parser');
 const expressFlash = require('express-flash');
+const expressSession = require('express-session');
 const greet = require('./greet');
 
 const app = express();
 const greetInsta = greet();
 const PORT = process.env.PORT || 5000;
+
+app.use(expressSession({
+  secret: "We don't have a secret",
+  resave: false,
+  saveUninitialized: true,
+}));
 
 app.use(express.static('public'));
 app.set('view engine', 'handlebars');
@@ -25,13 +32,13 @@ app.post('/greetme', (req, res) => {
   const { language } = req.body;
 
   if (!language && nameEntered === '') {
-    req.flash('info', 'Please enter name and select language!');
-  } if (nameEntered === '') {
-    console.log('Please enter a name!');
-  } if (!language) {
-    console.log('Please select a language!');
-  } if (!/[a-zA-z]$/.test(nameEntered)) {
-    console.log('Please pass a valid name!');
+    req.flash('flash', 'Please enter name and select language!');
+  } else if (nameEntered === '') {
+    req.flash('flash', 'Please enter a name!');
+  } else if (!language) {
+    req.flash('flash', 'Please select a language!');
+  } else if (!/[a-zA-z]$/.test(nameEntered)) {
+    req.flash('flash', 'Please pass a valid name!');
   } else {
     nameEntered = greetInsta.capFirstLetter(nameEntered);
     greetInsta.langRun(language, nameEntered);

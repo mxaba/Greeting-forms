@@ -1,0 +1,13 @@
+* {
+    text-align: center;
+    align-items: center;
+}
+
+body {
+    height: 100vh;
+}
+
+.errors p {
+    color: red;
+    height: auto;
+}
