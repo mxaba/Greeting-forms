@@ -2,7 +2,8 @@ module.exports = () => {
   let languMessage = '';
   let person = '';
   const nameList = {};
-  let greetingsCounter = 0;
+  // eslint-disable-next-line no-unused-vars
+  let namesGreetedOnThePool;
 
   function langRun(la, per) {
     if (la === 'spanish') {
@@ -31,27 +32,33 @@ module.exports = () => {
   }
 
   // Adding to the object
-  function nameLists(name) {
-    // nameList = name;
-    if (nameList[name] === undefined) {
-      greetingsCounter += 1;
-      nameList[name] = 1;
-      return nameList;
+  async function addToPool(name) {
+    const results = await namesGreetedOnThePool.query('SELECT * FROM greetings WHERE names = $1', [name]);
+
+    if (results.rows.length === 0) {
+      if (name !== '') {
+        await namesGreetedOnThePool.query('INSERT INTO greetings(names, counts) values($1, $2)', [name, 1]);
+      } else {
+        await namesGreetedOnThePool.query('UPDATE greetings SET counts=counts+1 WHERE names=$1', [name]);
+      }
     }
-    nameList[name] += 1;
-    return nameList;
   }
 
   function greetPerson() {
     return languMessage + person;
   }
 
-  function getCounter() {
-    return greetingsCounter;
+  async function getCounter() {
+    const greetingsCounter = await namesGreetedOnThePool.query('SELECT COUNT(*) FROM greetings');
+    return greetingsCounter.rows[0].count;
   }
 
   function getNameList() {
     return nameList;
+  }
+
+  function setNamesGreetedOnThePool(names) {
+    namesGreetedOnThePool = names;
   }
 
   function getNAmeOnList(name) {
@@ -62,11 +69,12 @@ module.exports = () => {
   }
 
   return {
+    setNamesGreetedOnThePool,
     getNAmeOnList,
     greetPerson,
     langRun,
     checkErrors,
-    nameLists,
+    addToPool,
     getCounter,
     getNameList,
     capFirstLetter,
