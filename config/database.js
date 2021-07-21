@@ -24,8 +24,8 @@ const config = {
   // ssl: sslConnection,
 };
 
-const choseURL = process.env.DATABASE_URL || config;
+const dataBasrUrl = process.env.DATABASE_URL || config;
 
-const pool = new pg.Pool(choseURL);
+const pool = new pg.Pool(dataBasrUrl);
 
 module.exports = pool;
