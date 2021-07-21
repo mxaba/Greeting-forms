@@ -35,6 +35,7 @@ app.get('/counter/:firstName', routesFunctionsNames.greetedNameRoute);
 
 app.post('/greetme', routesFunctionsNames.greetmeRoute);
 app.post('/reset', routesFunctionsNames.resetRoute);
+app.post('/remove/:id', routesFunctionsNames.resetNumberRoute);
 app.post('/resethome', routesFunctionsNames.resetHomeRoute);
 
 app.listen(PORT, () => {

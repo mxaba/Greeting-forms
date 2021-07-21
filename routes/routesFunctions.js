@@ -50,6 +50,7 @@ module.exports = () => {
     const namePassed = await greetInstaFact.getNAmeOnList(name);
     res.render('greetedname', {
       name,
+      id: namePassed[0].id,
       counts: namePassed[0].counts,
       english: namePassed[0].english,
       spanish: namePassed[0].spanish,
@@ -62,6 +63,16 @@ module.exports = () => {
       reset: await greetInstaFact.resetNames(),
     });
   }
+
+  async function resetNumberRoute(req, res) {
+    const { id } = req.params;
+
+    res.render('greeted', {
+      reseted: await greetInstaFact.resetNumber(id),
+      greeting: await greetInstaFact.getNameList(),
+    });
+  }
+
   async function resetHomeRoute(req, res) {
     res.render('home', {
       reset: await greetInstaFact.resetNames(),
@@ -71,6 +82,7 @@ module.exports = () => {
 
   return {
     resetHomeRoute,
+    resetNumberRoute,
     greetedRoute,
     greetedNameRoute,
     resetRoute,

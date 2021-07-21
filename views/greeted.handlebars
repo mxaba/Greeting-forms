@@ -23,6 +23,7 @@
           <th>Spanish</th>
           <th>English</th>
           <th>Count greeted</th>
+          <th>Delete</th>
         </tr>
 
         {{#each greeting}}
@@ -34,6 +35,11 @@
             <td>{{spanish}}</td>
             <td>{{english}}</td>
             <td>{{counts}}</td>
+            <td>
+                <form action="/remove/{{id}}" method="post">
+                    <button class="button-secondary secform" type="submit">Remove</button>
+                </form>
+            </td>
           </tr>
         {{/each}}
       </table>

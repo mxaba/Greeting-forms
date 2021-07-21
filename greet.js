@@ -89,8 +89,14 @@ module.exports = () => {
     return reseted;
   }
 
+  async function resetNumber(id) {
+    const reseted = await namesGreetedOnThePool.query('DELETE FROM greetings WHERE id = $1', [id]);
+    return reseted;
+  }
+
   return {
     resetNames,
+    resetNumber,
     setNamesGreetedOnThePool,
     getNAmeOnList,
     greetPerson,
