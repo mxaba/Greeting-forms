@@ -4,15 +4,6 @@ const PGUSER = 'mxaba';
 const PGDATABASE = 'greet';
 const PGPASSWORD = 'mxaba123';
 
-// let sslConnection = false;
-// if (process.env.DATABASE_URL && !(process.env.LOCAL_ENV || false)) {
-//   sslConnection = true;
-// }
-
-// connecting
-// const dataBasrUrl = process.env.DATABASE_URL || 'postgresql://postgres:greet12345@localhost:5432/greet';
-// const dataBasrUrl = process.env.DATABASE_URL || 'postgresql://localhost:5432/greet';
-
 const config = {
   host: '127.0.0.1',
   port: 5432,
