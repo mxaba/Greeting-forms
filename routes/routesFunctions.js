@@ -39,7 +39,7 @@ module.exports = () => {
 
   async function greetedRoute(req, res) {
     res.render('greeted', {
-      reset: await greetInstaFact.resetNames(),
+      reset: await greetInstaFact.getNameList(),
     });
   }
 
@@ -47,15 +47,15 @@ module.exports = () => {
     const name = req.params.firstName;
     let namePassed = await greetInstaFact.getNAmeOnList(name);
     namePassed = namePassed[0].counts;
-    res.render('greeted', {
+    res.render('many', {
       name,
       namePassed,
     });
   }
 
   async function resetRoute(req, res) {
-    res.render('many', {
-      reset: await greetInstaFact.getNameList(),
+    res.render('greeted', {
+      reset: await greetInstaFact.resetNames(),
     });
   }
 

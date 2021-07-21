@@ -1,0 +1,35 @@
+<div class="container box">
+
+  <div class="row">
+      <form action="/" method="get">
+        <div class="six columns">
+          <button class="button-primary" type="submit">Home</button>
+        </div>
+      </form>
+
+      <div class="six columns">
+        <form action="/reset" method="post">
+          <button class="button-primary" type="submit">Reset</button>
+        </form>
+      </div>
+  </div>
+
+  <div class="row">
+      <table>
+          <tr>
+              <tr>Name(s)</tr>
+              <tr>Count greeted</tr>
+          </tr>
+
+          {{#each greetings}}
+          <tr>
+              <td>
+                  <a href="/count/{{name}}">{{name}}</a>
+              </td>
+              <td>{{namePassed}}</td>
+          </tr>
+          {{/each}}
+      </table>
+  </div>
+
+</div>
