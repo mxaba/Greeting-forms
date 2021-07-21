@@ -1,0 +1,26 @@
+<div class="container box">
+  <div class="row">
+    <form action="/" method="get">
+      <div class="six columns">
+        <button class="button-primary" type="submit">Home</button>
+      </div>
+    </form>
+
+    <div class="six columns">
+      <form action="/reset" method="post">
+        <button class="button-primary" type="submit">Reset</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="twelve columns">
+          <h3> Hello, <b>{{name}}</b> has been greeted <b>{{counts}}</b> time(s) in different languages</h3>
+         <label for="">IsiZulu: </label> <p> Sawubona, <b>{{name}}</b> uvuselwe kayi {{isizulu}}</p>
+         <label for="">English: </label> <p> Hello, </b>{{name}}</b> has been greeted {{english}} times </p>
+         <label for="">Spanish: </label> <p> Hola, </b>{{name}}</b> ha sido saludado {{spanish}} veces </p>
+      </div>
+  </div>
+
+
+</div>

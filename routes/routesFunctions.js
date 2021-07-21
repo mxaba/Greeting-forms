@@ -46,11 +46,14 @@ module.exports = () => {
 
   async function greetedNameRoute(req, res) {
     const name = req.params.firstName;
-    let namePassed = await greetInstaFact.getNAmeOnList(name);
-    namePassed = namePassed[0].counts;
-    res.render('many', {
+    console.log(name);
+    const namePassed = await greetInstaFact.getNAmeOnList(name);
+    res.render('greetedname', {
       name,
-      namePassed,
+      counts: namePassed[0].counts,
+      english: namePassed[0].english,
+      spanish: namePassed[0].spanish,
+      isizulu: namePassed[0].isizulu,
     });
   }
 
