@@ -26,6 +26,11 @@ const config = {
 
 const dataBasrUrl = process.env.DATABASE_URL || config;
 
-const pool = new pg.Pool(dataBasrUrl);
+const pool = new pg.Pool({
+  connectionString: dataBasrUrl,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
 
 module.exports = pool;
