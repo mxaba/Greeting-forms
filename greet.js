@@ -1,7 +1,6 @@
 module.exports = () => {
   let languMessage = '';
   let person = '';
-  const nameList = {};
   // eslint-disable-next-line no-unused-vars
   let namesGreetedOnThePool;
 
@@ -36,11 +35,9 @@ module.exports = () => {
     const results = await namesGreetedOnThePool.query('SELECT * FROM greetings WHERE names = $1', [name]);
 
     if (results.rows.length === 0) {
-      if (name !== '') {
-        await namesGreetedOnThePool.query('INSERT INTO greetings(names, counts) values($1, $2)', [name, 1]);
-      } else {
-        await namesGreetedOnThePool.query('UPDATE greetings SET counts=counts+1 WHERE names=$1', [name]);
-      }
+      await namesGreetedOnThePool.query('INSERT INTO greetings(names, counts) values($1, $2)', [name, 1]);
+    } else {
+      await namesGreetedOnThePool.query('UPDATE greetings SET counts=counts+1 WHERE names = $1', [name]);
     }
   }
 
@@ -53,22 +50,27 @@ module.exports = () => {
     return greetingsCounter.rows[0].count;
   }
 
-  function getNameList() {
-    return nameList;
+  async function getNameList() {
+    const nameList = await namesGreetedOnThePool.query('SELECT * FROM greeting');
+    return nameList.rows;
   }
 
   function setNamesGreetedOnThePool(names) {
     namesGreetedOnThePool = names;
   }
 
-  function getNAmeOnList(name) {
-    if (nameList[name] !== undefined) {
-      return false;
-    }
-    return true;
+  async function getNAmeOnList(name) {
+    const greetedName = await namesGreetedOnThePool.query('SELECT * FROM greetings WHERE names =$1', [name]);
+    return greetedName.rows;
+  }
+
+  async function resetNames() {
+    const reseted = await namesGreetedOnThePool.query('DELETE FROM greetings');
+    return reseted;
   }
 
   return {
+    resetNames,
     setNamesGreetedOnThePool,
     getNAmeOnList,
     greetPerson,

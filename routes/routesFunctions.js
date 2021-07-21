@@ -4,7 +4,7 @@ const greet = require('../greet');
 const greetInstaFact = greet();
 greetInstaFact.setNamesGreetedOnThePool(ConnectPool);
 
-module.exports = function routesFunctions() {
+module.exports = () => {
   async function indexRoute(rq, res) {
     res.render('home', {
       greetings: await greetInstaFact.getCounter(),
@@ -37,7 +37,32 @@ module.exports = function routesFunctions() {
     language = null;
   }
 
+  async function greetedRoute(req, res) {
+    res.render('greeted', {
+      reset: await greetInstaFact.resetNames(),
+    });
+  }
+
+  async function greetedNameRoute(req, res) {
+    const name = req.params.firstName;
+    let namePassed = await greetInstaFact.getNAmeOnList(name);
+    namePassed = namePassed[0].counts;
+    res.render('greeted', {
+      name,
+      namePassed,
+    });
+  }
+
+  async function resetRoute(req, res) {
+    res.render('many', {
+      reset: await greetInstaFact.getNameList(),
+    });
+  }
+
   return {
+    greetedRoute,
+    greetedNameRoute,
+    resetRoute,
     greetmeRoute,
     indexRoute,
   };

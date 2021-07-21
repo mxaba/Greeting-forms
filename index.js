@@ -3,12 +3,12 @@ const expresshbs = require('express-handlebars');
 const bodyParse = require('body-parser');
 const expressFlash = require('express-flash');
 const expressSession = require('express-session');
-const routesFunctions = require('./routes/routesFunctions');
+const RoutesFunctions = require('./routes/routesFunctions');
 
 const app = express();
 
 // Calling logic and passing the pool
-const routesFunctionsNames = routesFunctions();
+const routesFunctionsNames = RoutesFunctions();
 
 const PORT = process.env.PORT || 5000;
 
@@ -30,8 +30,11 @@ app.use(bodyParse.urlencoded({ extended: false }));
 // console.log(pool);
 
 app.get('/', routesFunctionsNames.indexRoute);
+app.get('/greeted', routesFunctionsNames.greetedRoute);
+app.get('/counter/:firstName', routesFunctionsNames.greetedNameRoute);
 
 app.post('/greetme', routesFunctionsNames.greetmeRoute);
+app.post('/reset', routesFunctionsNames.resetRoute);
 
 app.listen(PORT, () => {
   console.log('App runing on this IP and port: 127.0.0.1:', PORT);

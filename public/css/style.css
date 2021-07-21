@@ -26,3 +26,11 @@ body {
     margin-left: 40px;
     padding: 12px;
 }
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    background-color: rgb(128, 101, 134);
+    text-align: center;
+    color: white;
+}
