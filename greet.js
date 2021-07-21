@@ -30,14 +30,34 @@ module.exports = () => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   }
 
+  async function insertIntoDataPool(name, langRunPassed) {
+    if (langRunPassed === 'spanish') {
+      await namesGreetedOnThePool.query('INSERT INTO greetings(names, english, spanish, isizulu, counts) values($1, $2, $3, $4, $5)', [name, 0, 1, 0, 1]);
+    } else if (langRunPassed === 'english') {
+      await namesGreetedOnThePool.query('INSERT INTO greetings(names, english, spanish, isizulu, counts) values($1, $2, $3, $4, $5)', [name, 1, 0, 0, 1]);
+    } else if (langRunPassed === 'isizulu') {
+      await namesGreetedOnThePool.query('INSERT INTO greetings(names, english, spanish, isizulu, counts) values($1, $2, $3, $4, $5)', [name, 0, 0, 1, 1]);
+    }
+  }
+
+  async function updateDataPool(name, langRunPassed) {
+    if (langRunPassed === 'spanish') {
+      await namesGreetedOnThePool.query('UPDATE greetings SET spanish=spanish+1, counts=counts+1 WHERE names = $1', [name]);
+    } else if (langRunPassed === 'english') {
+      await namesGreetedOnThePool.query('UPDATE greetings SET english=english+1, counts=counts+1 WHERE names = $1', [name]);
+    } else if (langRunPassed === 'isizulu') {
+      await namesGreetedOnThePool.query('UPDATE greetings SET isizulu=isizulu+1, counts=counts+1 WHERE names = $1', [name]);
+    }
+  }
+
   // Adding to the object
-  async function addToPool(name) {
+  async function addToPool(name, lanFrom) {
     const results = await namesGreetedOnThePool.query('SELECT * FROM greetings WHERE names = $1', [name]);
 
     if (results.rows.length === 0) {
-      await namesGreetedOnThePool.query('INSERT INTO greetings(names, counts) values($1, $2)', [name, 1]);
+      insertIntoDataPool(name, lanFrom);
     } else {
-      await namesGreetedOnThePool.query('UPDATE greetings SET counts=counts+1 WHERE names = $1', [name]);
+      updateDataPool(name, lanFrom);
     }
   }
 
@@ -51,7 +71,7 @@ module.exports = () => {
   }
 
   async function getNameList() {
-    const nameList = await namesGreetedOnThePool.query('SELECT * FROM greeting');
+    const nameList = await namesGreetedOnThePool.query('SELECT * FROM greetings ');
     return nameList.rows;
   }
 

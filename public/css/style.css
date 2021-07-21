@@ -34,3 +34,8 @@ body {
     text-align: center;
     color: white;
 }
+
+.cen {
+    margin-left:auto;
+    margin-right:auto
+  }

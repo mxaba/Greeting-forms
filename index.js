@@ -35,6 +35,7 @@ app.get('/counter/:firstName', routesFunctionsNames.greetedNameRoute);
 
 app.post('/greetme', routesFunctionsNames.greetmeRoute);
 app.post('/reset', routesFunctionsNames.resetRoute);
+app.post('/resethome', routesFunctionsNames.resetHomeRoute);
 
 app.listen(PORT, () => {
   console.log('App runing on this IP and port: 127.0.0.1:', PORT);

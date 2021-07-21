@@ -1,55 +1,60 @@
 <div class="container box">
-    <div class="row">
-        <div class="twelve columns">
-            {{#if messages.flash}}
-                <div class="errors">
-                    <p> <b>{{ messages.flash }}</b> </p>
-                </div>
-            {{/if}}
+  <div class="row">
+    <div class="twelve columns">
+      {{#if messages.flash}}
+        <div class="errors">
+          <p> <b>{{messages.flash}}</b> </p>
         </div>
+      {{/if}}
     </div>
+  </div>
 
-    <div class="row">
-        <div class="twelve columns">
-            <div class="row">
-                <form action="greetme" method="post">
-                    {{!-- <label for="">Name: --}}
-                        <input type="text" name="nameEntered" placeholder="Enter your name">
-                        <button name="greetButton">Greet</button> <span class="countGretings">{{ greetings }}</span>
-                    {{!-- </label> --}}
-                    
-                    <div class="row">
-                        <div class="four columns">
-                            IsiZulu
-                            <input type="radio" name="language" value="isizulu">
-                        </div>
+  <div class="row">
+    <div class="twelve columns">
+      <div class="row">
+        <form action="greetme" method="post">
+          {{! <label for="">Name: }}
+          <input type="text" name="nameEntered" placeholder="Enter your name" />
+          <button name="greetButton">Greet</button>
+          <span class="countGretings">{{greetings}}</span>
+          {{! </label> }}
 
-                        <div class="four columns">
-                            Spanish
-                            <input type="radio" name="language" value="spanish">
-                        </div>
-
-                        <div class="four columns">
-                            English
-                            <input type="radio" name="language" value="english">
-                        </div>
-                    </div>
-                </form>
+          <div class="row">
+            <div class="four columns">
+              IsiZulu
+              <input type="radio" name="language" value="isizulu" />
             </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="twelve columns">
-            <div class="output">
-                <span> <b> {{ greetPerson }} </b></span>
+            <div class="four columns">
+              Spanish
+              <input type="radio" name="language" value="spanish" />
             </div>
-        </div>
-    </div> <br>
 
-    <div class="row">
-        <div class="twelve columns">
-            <p> <a href="/greeted">View Greeted name(s)</a> </p>
-        </div>
+            <div class="four columns">
+              English
+              <input type="radio" name="language" value="english" />
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="twelve columns">
+      <div class="output">
+        <span> <b> {{greetPerson}} </b></span>
+      </div>
+    </div>
+  </div>
+  <br />
+
+  <div class="row">
+    <div class="twelve columns">
+      <p> <a href="/greeted">View Greeted name(s)</a> </p>
+      <form action="/resethome" method="post">
+        <button class="button-primary" type="submit">Reset</button>
+      </form>
+    </div>
+  </div>
 </div>

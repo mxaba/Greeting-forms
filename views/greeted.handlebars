@@ -1,35 +1,43 @@
 <div class="container box">
 
   <div class="row">
-      <form action="/" method="get">
-        <div class="six columns">
-          <button class="button-primary" type="submit">Home</button>
-        </div>
-      </form>
-
+    <form action="/" method="get">
       <div class="six columns">
-        <form action="/reset" method="post">
-          <button class="button-primary" type="submit">Reset</button>
-        </form>
+        <button class="button-primary" type="submit">Home</button>
       </div>
+    </form>
+
+    <div class="six columns">
+      <form action="/reset" method="post">
+        <button class="button-primary" type="submit">Reset</button>
+      </form>
+    </div>
   </div>
 
   <div class="row">
-      <table>
-          <tr>
-              <tr>Name(s)</tr>
-              <tr>Count greeted</tr>
-          </tr>
+    <div class="twelve columns">
+      <table class="cen">
+        <tr>
+          <th>Name(s)</th>
+          <th>Isizulu</th>
+          <th>Spanish</th>
+          <th>English</th>
+          <th>Count greeted</th>
+        </tr>
 
-          {{#each greetings}}
+        {{#each greeting}}
           <tr>
-              <td>
-                  <a href="/count/{{name}}">{{name}}</a>
-              </td>
-              <td>{{namePassed}}</td>
+            <td>
+              <a href="/count/{{names}}">{{names}}</a>
+            </td>
+            <td>{{isizulu}}</td>
+            <td>{{spanish}}</td>
+            <td>{{english}}</td>
+            <td>{{counts}}</td>
           </tr>
-          {{/each}}
+        {{/each}}
       </table>
+    </div>
   </div>
 
 </div>

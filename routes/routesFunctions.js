@@ -26,7 +26,7 @@ module.exports = () => {
     } else {
       nameEntered = greetInstaFact.capFirstLetter(nameEntered);
       greetInstaFact.langRun(language, nameEntered);
-      await greetInstaFact.addToPool(nameEntered);
+      await greetInstaFact.addToPool(nameEntered, language);
     }
 
     res.render('home', {
@@ -38,8 +38,9 @@ module.exports = () => {
   }
 
   async function greetedRoute(req, res) {
+    console.log(await greetInstaFact.getNameList());
     res.render('greeted', {
-      reset: await greetInstaFact.getNameList(),
+      greeting: await greetInstaFact.getNameList(),
     });
   }
 
@@ -58,8 +59,15 @@ module.exports = () => {
       reset: await greetInstaFact.resetNames(),
     });
   }
+  async function resetHomeRoute(req, res) {
+    res.render('home', {
+      reset: await greetInstaFact.resetNames(),
+      greetings: await greetInstaFact.getCounter(),
+    });
+  }
 
   return {
+    resetHomeRoute,
     greetedRoute,
     greetedNameRoute,
     resetRoute,
