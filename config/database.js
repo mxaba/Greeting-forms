@@ -4,10 +4,10 @@ const PGUSER = 'mxaba';
 const PGDATABASE = 'greet';
 const PGPASSWORD = 'mxaba123';
 
-let sslConnection = false;
-if (process.env.DATABASE_URL && !(process.env.LOCAL_ENV || false)) {
-  sslConnection = true;
-}
+// let sslConnection = false;
+// if (process.env.DATABASE_URL && !(process.env.LOCAL_ENV || false)) {
+//   sslConnection = true;
+// }
 
 // connecting
 // const dataBasrUrl = process.env.DATABASE_URL || 'postgresql://postgres:greet12345@localhost:5432/greet';
@@ -21,7 +21,7 @@ const config = {
   database: PGDATABASE, // name of the database
   max: 10, // max number of clients in the pool
   idleTimeoutMillis: 30000,
-  ssl: sslConnection,
+  // ssl: sslConnection,
 };
 
 const pool = new pg.Pool(process.env.DATABASE_URL || config);
