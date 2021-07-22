@@ -1,34 +1,51 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/skeleton.css">
-    <link rel="stylesheet" href="/css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/skeleton.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"
+    ></script>
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
     <title>Greetings Webapp</title>
-</head>
-<body>
+  </head>
+  <body>
 
     <div class="row">
-        <div class="twelve column">
-            <div class="heda">
-                <h1>
-                    Greetings
-                </h1>
-            </div>
+      <div class="twelve column">
+        <div class="heda">
+          <h1>
+            Greetings
+          </h1>
         </div>
+      </div>
     </div>
+
+    <script>
+      $(document).ready(function(){ setTimeout(function() {
+      $('#errors').fadeOut('slow'); }, 2000); });
+    </script>
 
     {{{body}}}
 
     <div class="row">
-        <div class="twelve columns footer">
-            <footer>
-                <P> &copy; 2021 | Developed by <b> <a href="https://mxaba.github.io" target="_blank" rel="noopener noreferrer">mxaba</a></b></P>
-            </footer>
-        </div>
+      <div class="twelve columns footer">
+        <footer>
+          <P>
+            &copy; 2021 | Developed by
+            <b>
+              <a
+                href="https://mxaba.github.io"
+                target="_blank"
+                rel="noopener noreferrer"
+              >mxaba</a></b></P>
+        </footer>
+      </div>
     </div>
-</body>
+  </body>
 </html>
