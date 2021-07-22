@@ -16,21 +16,13 @@ module.exports = () => {
     let { language } = req.body;
 
     if (!language && nameEntered === '') {
-      setTimeout(() => {
-        req.flash('flash', 'Please enter name and select language!');
-      }, 300);
+      req.flash('flash', 'Please enter name and select language!');
     } else if (nameEntered === '') {
-      setTimeout(() => {
-        req.flash('flash', 'Please enter a name!');
-      }, 300);
+      req.flash('flash', 'Please enter a name!');
     } else if (!language) {
-      setTimeout(() => {
-        req.flash('flash', 'Please select a language!');
-      }, 300);
+      req.flash('flash', 'Please select a language!');
     } else if (!/[a-zA-z]$/.test(nameEntered)) {
-      setTimeout(() => {
-        req.flash('flash', 'Please pass a valid name!');
-      }, 300);
+      req.flash('flash', 'Please pass a valid name!');
     } else {
       nameEntered = greetInstaFact.capFirstLetter(nameEntered);
       greetInstaFact.langRun(language, nameEntered);
