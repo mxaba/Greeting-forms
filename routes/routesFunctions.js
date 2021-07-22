@@ -6,36 +6,50 @@ greetInstaFact.setNamesGreetedOnThePool(ConnectPool);
 
 module.exports = () => {
   async function indexRoute(rq, res) {
+    const greetings = await greetInstaFact.getCounter();
     res.render('home', {
-      greetings: await greetInstaFact.getCounter(),
+      greetings,
     });
   }
 
-  async function greetmeRoute(req, res) {
-    let { nameEntered } = req.body;
-    let { language } = req.body;
-
-    if (!language && nameEntered === '') {
-      req.flash('info', 'Please enter name and select language!');
-    } else if (nameEntered === '') {
-      req.flash('info', 'Please enter a name!');
-    } else if (!language) {
-      req.flash('info', 'Please select a language!');
-    } else if (!/[a-zA-z]$/.test(nameEntered)) {
-      req.flash('info', 'Please pass a valid name!');
-    } else {
-      nameEntered = greetInstaFact.capFirstLetter(nameEntered);
-      greetInstaFact.langRun(language, nameEntered);
-      await greetInstaFact.addToPool(nameEntered, language);
-    }
-
+  async function homeRoute(rq, res) {
+    const greetings = await greetInstaFact.getCounter();
     res.render('home', {
-      greetPerson: greetInstaFact.greetPerson(),
-      setb: greetInstaFact.setback(),
-      greetings: await greetInstaFact.getCounter(),
+      greetings,
     });
-    nameEntered = '';
-    language = null;
+  }
+
+  async function greetmeRoute(req, res, next) {
+    try {
+      let { nameEntered } = req.body;
+      let { language } = req.body;
+      let greetings = await greetInstaFact.getCounter();
+      let greetPerson;
+
+      if (!language && nameEntered === '') {
+        req.flash('info', 'Please enter name and select language!');
+      } else if (nameEntered === '') {
+        req.flash('info', 'Please enter a name!');
+      } else if (!language) {
+        req.flash('info', 'Please select a language!');
+      } else if (!/[a-zA-z]$/.test(nameEntered)) {
+        req.flash('info', 'Please pass a valid name!');
+      } else {
+        nameEntered = greetInstaFact.capFirstLetter(nameEntered);
+        greetPerson = await greetInstaFact.addToPool(nameEntered, language);
+        greetings = await greetInstaFact.getCounter();
+      }
+
+      res.render('home', {
+        greetPerson,
+        greetings,
+      });
+
+      nameEntered = '';
+      language = null;
+    } catch (error) {
+      next(error);
+    }
   }
 
   async function greetedRoute(req, res) {
@@ -60,6 +74,7 @@ module.exports = () => {
   }
 
   async function resetRoute(req, res) {
+    req.flash('info', 'Database Cleared!');
     res.render('greeted', {
       reset: await greetInstaFact.resetNames(),
     });
@@ -75,6 +90,7 @@ module.exports = () => {
   }
 
   async function resetHomeRoute(req, res) {
+    req.flash('info', 'Database Cleared!');
     res.render('home', {
       reset: await greetInstaFact.resetNames(),
       greetings: await greetInstaFact.getCounter(),
@@ -89,5 +105,6 @@ module.exports = () => {
     resetRoute,
     greetmeRoute,
     indexRoute,
+    homeRoute,
   };
 };

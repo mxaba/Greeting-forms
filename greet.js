@@ -1,28 +1,18 @@
 module.exports = () => {
-  let languMessage = '';
-  let person = '';
   // eslint-disable-next-line no-unused-vars
   let namesGreetedOnThePool;
 
-  function langRun(la, per) {
-    if (la === 'spanish') {
-      languMessage = 'Hola, ';
-    } if (la === 'isizulu') {
-      languMessage = 'Sawubona, ';
-    } if (la === 'english') {
-      languMessage = 'Hello, ';
+  function langRun(name, lanFrom) {
+    if (lanFrom === 'spanish') {
+      return `Hola, ${name}`;
     }
-    person = per;
-    // return languMessage + person
-  }
-
-  function checkErrors() {
-    if (person === '') {
-      return 'Please pass a name';
-    } if (languMessage === '' || languMessage === undefined) {
-      return 'Please Select a Language';
+    if (lanFrom === 'isizulu') {
+      return `Sawubona, ${name}`;
     }
-    return '';
+    if (lanFrom === 'english') {
+      return `Helo, ${name}`;
+    }
+    return false;
   }
 
   // Converting the first Letter
@@ -54,20 +44,15 @@ module.exports = () => {
   async function addToPool(name, lanFrom) {
     const results = await namesGreetedOnThePool.query('SELECT * FROM greetings WHERE names = $1', [name]);
 
+    let message = '';
     if (results.rows.length === 0) {
       insertIntoDataPool(name, lanFrom);
+      message = langRun(name, lanFrom);
     } else {
       updateDataPool(name, lanFrom);
+      message = langRun(name, lanFrom);
     }
-  }
-
-  function greetPerson() {
-    return languMessage + person;
-  }
-
-  function setback() {
-    languMessage = '';
-    person = '';
+    return message;
   }
 
   async function getCounter() {
@@ -100,14 +85,11 @@ module.exports = () => {
   }
 
   return {
-    setback,
     resetNames,
     resetNumber,
     setNamesGreetedOnThePool,
     getNAmeOnList,
-    greetPerson,
     langRun,
-    checkErrors,
     addToPool,
     getCounter,
     getNameList,

@@ -33,6 +33,7 @@ app.get('/', routesFunctionsNames.indexRoute);
 app.get('/greeted', routesFunctionsNames.greetedRoute);
 app.get('/counter/:firstName', routesFunctionsNames.greetedNameRoute);
 
+app.post('/home', routesFunctionsNames.homeRoute);
 app.post('/greetme', routesFunctionsNames.greetmeRoute);
 app.post('/reset', routesFunctionsNames.resetRoute);
 app.post('/remove/:id', routesFunctionsNames.resetNumberRoute);

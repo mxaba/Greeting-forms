@@ -1,6 +1,16 @@
 <div class="container box">
 
   <div class="row">
+    <div class="twelve columns">
+      {{#if messages.info}}
+        <div class="errors" id="errors">
+          <p> <b>{{messages.info}}</b> </p>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="row">
     <form action="/" method="get">
       <div class="six columns">
         <button class="button-primary" type="submit">Home</button>
