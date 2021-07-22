@@ -4,7 +4,7 @@
     <div class="twelve columns">
       {{#if messages.info}}
         <div class="errors" id="errors">
-          <p> <b>{{messages.info}}</b> </p>
+          <p> <b> {{name}} {{messages.info}}</b> </p>
         </div>
       {{/if}}
     </div>
@@ -46,7 +46,7 @@
             <td>{{english}}</td>
             <td>{{counts}}</td>
             <td>
-                <form action="/remove/{{id}}" method="post">
+                <form action="/remove/{{id}}/{{names}}" method="post">
                     <button class="button-secondary secform" type="submit">Remove</button>
                 </form>
             </td>

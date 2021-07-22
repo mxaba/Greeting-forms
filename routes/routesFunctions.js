@@ -81,10 +81,11 @@ module.exports = () => {
   }
 
   async function resetNumberRoute(req, res) {
-    const { id } = req.params;
-
+    const { id, name } = req.params;
+    req.flash('info', ' was removed!');
     res.render('greeted', {
       reseted: await greetInstaFact.resetNumber(id),
+      name,
       greeting: await greetInstaFact.getNameList(),
     });
   }
