@@ -24,4 +24,6 @@ const pool = new pg.Pool({
   },
 });
 
+// const pool = new pg.Pool(dataBasrUrl);
+
 module.exports = pool;

@@ -65,6 +65,11 @@ module.exports = () => {
     return languMessage + person;
   }
 
+  function setback() {
+    languMessage = '';
+    person = '';
+  }
+
   async function getCounter() {
     const greetingsCounter = await namesGreetedOnThePool.query('SELECT COUNT(*) FROM greetings');
     return greetingsCounter.rows[0].count;
@@ -95,6 +100,7 @@ module.exports = () => {
   }
 
   return {
+    setback,
     resetNames,
     resetNumber,
     setNamesGreetedOnThePool,

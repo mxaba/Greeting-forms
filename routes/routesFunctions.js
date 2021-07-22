@@ -16,13 +16,13 @@ module.exports = () => {
     let { language } = req.body;
 
     if (!language && nameEntered === '') {
-      req.flash('flash', 'Please enter name and select language!');
+      req.flash('info', 'Please enter name and select language!');
     } else if (nameEntered === '') {
-      req.flash('flash', 'Please enter a name!');
+      req.flash('info', 'Please enter a name!');
     } else if (!language) {
-      req.flash('flash', 'Please select a language!');
+      req.flash('info', 'Please select a language!');
     } else if (!/[a-zA-z]$/.test(nameEntered)) {
-      req.flash('flash', 'Please pass a valid name!');
+      req.flash('info', 'Please pass a valid name!');
     } else {
       nameEntered = greetInstaFact.capFirstLetter(nameEntered);
       greetInstaFact.langRun(language, nameEntered);
@@ -31,6 +31,7 @@ module.exports = () => {
 
     res.render('home', {
       greetPerson: greetInstaFact.greetPerson(),
+      setb: greetInstaFact.setback(),
       greetings: await greetInstaFact.getCounter(),
     });
     nameEntered = '';
