@@ -43,6 +43,7 @@ describe('Greetings with database PSQL Tests', () => {
     // await greetInstaFact.resetNames();
     it('Should return the name greeted in Spanish and should return 1 for counter', async () => {
       await greetInstaFact.addToPool('Xaba', 'english');
+      await greetInstaFact.addToPool('Xalba', 'english');
       //   assert.equal('Hola, Mcebo', await greetInstaFact.addToPool('Mcebo', 'spanish'));
       assert.equal(1, await greetInstaFact.getCounter());
     });
@@ -55,7 +56,7 @@ describe('Greetings with database PSQL Tests', () => {
     });
     it('Should greet 5 names and return 5 for the counter as well', async () => {
       await greetInstaFact.addToPool('Xaba', 'english');
-      await greetInstaFact.addToPool('Xaba', 'english');
+      await greetInstaFact.addToPool('Xabaq', 'english');
       await greetInstaFact.addToPool('Mcebo', 'spanish');
       await greetInstaFact.addToPool('MCB', 'isizulu');
       await greetInstaFact.addToPool('Awe', 'english');
