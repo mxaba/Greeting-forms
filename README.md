@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.com/mxaba/greetings-webapp.svg?branch=master)](https://travis-ci.com/mxaba/greetings-webapp)
