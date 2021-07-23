@@ -10,7 +10,7 @@ module.exports = () => {
       return `Sawubona, ${name}`;
     }
     if (lanFrom === 'english') {
-      return `Helo, ${name}`;
+      return `Hello, ${name}`;
     }
     return false;
   }
