@@ -1,14 +1,14 @@
 language: node_js
 
+env:
+  - DATABASE_URL=postgresql://postgres@localhost:5432/greet_tests
+
 node_js:
   - "12"
 
-env:
-  - process.env.DATABASE_URL
-
 before_script:
-  - psql -c 'create database  greetingsTests;' -U postgres
-  - psql -U postgres -d greetingsTests -a -f tables.sql
+  - psql -c 'create database  greet_tests;' -U postgres
+  - psql -U postgres -d greet_tests -a -f tables.sql
 
 services:
   - postgresql
